@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="icon" href="<%= BASE_URL %>favicon.ico">
+    <title>Z-Games Rio</title>
+  </head>
+  <body>
+  <script defer
+          src="https://maps.googleapis.com/maps/api/js?key=&libraries=places&callback=initMap">
+  </script>
+  <script type="text/javascript">
+      function initAutocomplete() {
+          console.log('init autocomplete');
+          var rioBounds = new google.maps.LatLngBounds(
+              new google.maps.LatLng(-22.771805, -43.775785),
+              new google.maps.LatLng(-23.022292, -43.096006));
+          const autocomp = new google.maps.places.Autocomplete(
+              (document.getElementById('autocomplete')),
+              {bounds: rioBounds,types: ['establishment']}
+          );
+          //autocomp.setOptions({strictBounds: true})
+      }
+  </script>
+  <script type="text/javascript">
+      function initMap() {
+          console.log('init maps');
+          var map = new google.maps.Map(document.getElementById('map'), {
+              center:{ lat: -22.906095, lng: -43.176794},
+              zoom:12
+          });
+          initAutocomplete()
+      }
+  </script>
+
+    <noscript>
+      <strong>We're sorry but <%= htmlWebpackPlugin.options.title %> doesn't work properly without JavaScript enabled. Please enable it to continue.</strong>
+    </noscript>
+    <div id="app"></div>
+    <!-- built files will be auto injected -->
+  </body>
+</html>
